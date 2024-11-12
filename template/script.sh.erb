@@ -69,7 +69,7 @@ export SINGULARITY_CACHE_DIR="/srv/scratch/sbf-pipelines/proteinfold/singualrity
 export APPTAINER_CACHEDIR="/srv/scratch/sbf-pipelines/proteinfold/singularity"
 export NXF_SINGULARITY_CACHEDIR="/srv/scratch/sbf-pipelines/proteinfold/singularity"
 
-module load cuda/12.2.1
+module load cuda/11.8.0 cudnn/8.6.0.163-11.8
 
 nextflow run main.nf \
 	--input "${SAMPLESHEET}" \
