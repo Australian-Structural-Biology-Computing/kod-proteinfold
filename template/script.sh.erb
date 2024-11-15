@@ -8,22 +8,22 @@ PROJECT_ROOT=${PROJECT_ROOT:-/srv/scratch/sbf-pipelines/proteinfold}
 set -x pipefail
 set -e
 
-export PATH="/srv/scratch/sbf-pipelines/dev/kod/bin/:${PATH}"
-export APPTAINER_CACHEDIR="/srv/scratch/sbf-pipelines/proteinfold/singularity"
-export SINGULARITY_CACHEDIR="/srv/scratch/sbf-pipelines/proteinfold/singularity"
-export NXF_APPTAINER_CACHEDIR="/srv/scratch/sbf-pipelines/proteinfold/singularity"
-export NXF_SINGULARITY_CACHEDIR="/srv/scratch/sbf-pipelines/proteinfold/singularity"
+export PATH="${PROJECT_ROOT}/${ENVIRONMENT}/bin/:${PATH}"
+export APPTAINER_CACHEDIR="${PROJECT_ROOT}/${ENVIRONMENT}/singularity"
+export SINGULARITY_CACHEDIR="${PROJECT_ROOT}/${ENVIRONMENT}/singularity"
+export NXF_APPTAINER_CACHEDIR="${PROJECT_ROOT}/${ENVIRONMENT}/singularity"
+export NXF_SINGULARITY_CACHEDIR="${PROJECT_ROOT}/${ENVIRONMENT}/singularity"
 
 export PROTEINFOLD_VERSION="1.1.1"
 
 function update_local_version() {
 	rm -rf "${HOME}/.proteinfold"	
-	cp -r /srv/scratch/sbf-pipelines/proteinfold/dev "${HOME}"
+	cp -r ${PROJECT_ROOT}/${ENVIRONMENT}/dev "${HOME}"
 	mv "${HOME}/pipeline" "${HOME}/.proteinfold"
 }
 
 function pull_cluster_version() {
-	cp -r /srv/scratch/sbf-pipelines/proteinfold/dev/* .
+	cp -r ${PROJECT_ROOT}/${ENVIRONMENT}/dev/* .
 }
 
 pull_cluster_version
@@ -36,7 +36,7 @@ user_input="<%= context.samplesheet %>"
 echo "${user_input}" >> $HOME/debug.txt
 
 OUT_DIR=$(echo "<%= context.run_name %>" | sed "s/[ \,\<\>\/\?\\\'\:]/\_/g")
-OUT_DIR="/srv/scratch/${USER}/proteinfold/"
+OUT_DIR="/srv/scratch/${USER}/proteinfold/${OUT_DIR}"
 mkdir -p "${OUT_DIR}"
 
 MODE=""
