@@ -62,7 +62,7 @@ fi
 
 if [ "${MODE}" == "DIRECTORY" ];
 then
-	create-samplesheet --directory "${user_input}" --suffix "<%= context.prot_mode %>" --fasta-regex '*'
+	create-samplesheet --directory "${user_input}" --suffix "<%= context.prot_mode %>" --fasta-match '*'
 	SAMPLESHEET="$(pwd)/samplesheet.csv"
 fi
 
