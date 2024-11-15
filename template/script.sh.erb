@@ -18,12 +18,12 @@ export PROTEINFOLD_VERSION="1.1.1"
 
 function update_local_version() {
 	rm -rf "${HOME}/.proteinfold"	
-	cp -r ${PROJECT_ROOT}/${RUN_ENVIRONMENT}/dev "${HOME}"
+	cp -r ${PROJECT_ROOT}/${RUN_ENVIRONMENT}/pipeline "${HOME}"
 	mv "${HOME}/pipeline" "${HOME}/.proteinfold"
 }
 
 function pull_cluster_version() {
-	cp -r ${PROJECT_ROOT}/${RUN_ENVIRONMENT}/dev/* .
+	cp -r ${PROJECT_ROOT}/${RUN_ENVIRONMENT}/pipeline/* .
 }
 
 pull_cluster_version
